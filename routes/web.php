@@ -39,6 +39,7 @@ Route::name('dashboard.')->prefix('dashboard')->middleware(['auth:sanctum', 'ver
 
     Route::get('/region', [RegionController::class, 'index'])->name('region.index');
     Route::get('/device', [DeviceController::class, 'index'])->name('device.index');
+    Route::get('/device/detail/{deviceId}', [DeviceController::class, 'detail'])->name('device.detail');
 });
 
 Route::get('dashboard2', function() {

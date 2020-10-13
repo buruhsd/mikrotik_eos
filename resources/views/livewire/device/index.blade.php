@@ -37,7 +37,7 @@
 	          </thead>
 	          <tbody class="bg-white divide-y divide-gray-200">
 	          	@foreach($devices as $device)
-	            <tr>
+	            <tr onclick="window.location='dashboard/device/detail/{{$device->id}}';" style="cursor: pointer;">
 	              <td class="px-6 py-4 whitespace-no-wrap">
 	                <div class="flex items-center">
 	                  <div class="flex-shrink-0 h-10 w-10">

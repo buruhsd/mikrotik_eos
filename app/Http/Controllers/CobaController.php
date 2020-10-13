@@ -23,7 +23,7 @@ class CobaController extends Controller
 		$client = new Client($config);
 
 		// var_dump($client);
-		$query = new Query('/ip/hotspot/user/getall'); //lst user
+		$query = new Query('/system/resource/print'); //lst user
 
 		// Send query and read response from RouterOS
 		$response = $client->query($query)->read();

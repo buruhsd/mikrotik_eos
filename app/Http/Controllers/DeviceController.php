@@ -10,4 +10,8 @@ class DeviceController extends Controller
     	// $data = Region::all();
         return view('device.index');
     }
+
+    public function detail($deviceId){
+    	return view('device.detail', compact('deviceId'));
+    }
 }
