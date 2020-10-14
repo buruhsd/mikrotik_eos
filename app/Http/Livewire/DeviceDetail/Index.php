@@ -26,7 +26,7 @@ class Index extends Component
 
         return view('livewire.device-detail.index', [
         	'device' => $this->device,
-        	'listUser' => Radreply::paginate(5),
+        	'listUser' => Radreply::orderBy('id', 'DESC')->paginate(5),
             'countUser' => Radreply::count(),
         	'activeUser' => $this->activeUser,
         	'cpuLoad' => $this->cpuLoad,
