@@ -10,7 +10,7 @@ class Radreply extends Model
     use HasFactory;
 
     protected $connection = 'radius';
-    protected $table = 'readreply';
+    protected $table = 'radreply';
 
     protected $fillable = [
     	'username',

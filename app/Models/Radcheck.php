@@ -10,7 +10,7 @@ class Radcheck extends Model
     use HasFactory;
 
     protected $connection = 'radius';
-    protected $table = 'readcheck';
+    protected $table = 'radcheck';
 
     protected $fillable = [
     	'username',
