@@ -26,7 +26,7 @@ class Index extends Component
 
         return view('livewire.device-detail.index', [
         	'device' => $this->device,
-        	'listUser' => $this->listUser,
+        	'listUser' => Radreply::orderBy('id', 'DESC')->paginate(5),
         	'activeUser' => $this->activeUser,
         	'cpuLoad' => $this->cpuLoad,
         ]);
@@ -42,7 +42,7 @@ class Index extends Component
         $this->queryCpuload = new Query('/system/resource/getall');
         $this->device = $this->device;
         $this->connectMikrotik();
-        $this->listUser = Radreply::orderBy('id', 'DESC')->paginate(5);
+        // $this->listUser = Radreply::orderBy('id', 'DESC')->paginate(5);
         $this->activeUser = $this->client->query($this->queryActiveuser)->read();
         $this->cpuLoad = $this->client->query($this->queryCpuload)->read();
         // $this->connectMikrotik();
