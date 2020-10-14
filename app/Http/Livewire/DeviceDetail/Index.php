@@ -4,6 +4,8 @@ namespace App\Http\Livewire\DeviceDetail;
 
 use Livewire\Component;
 use App\Models\Device;
+use App\Models\Radcheck;
+use App\Models\Radreply;
 use Livewire\WithPagination;
 use \RouterOS\Config;
 use \RouterOS\Client;
@@ -13,7 +15,8 @@ class Index extends Component
 {
 	use WithPagination;
 
-	public $device, $deviceId;
+	public $device, $listUser, $activeUser, $cpuLoad ,$deviceId, $username, $password;
+    public $isOpen = 0;
 	private $config, $client, $queryListUser, $queryActiveuser, $queryCpuload;
 
 
@@ -23,9 +26,9 @@ class Index extends Component
 
         return view('livewire.device-detail.index', [
         	'device' => $this->device,
-        	'listUser' => $this->client->query($this->queryListUser)->read(),
-        	'activeUser' => $this->client->query($this->queryActiveuser)->read(),
-        	'cpuLoad' => $this->client->query($this->queryCpuload)->read(),
+        	'listUser' => $this->listUser,
+        	'activeUser' => $this->activeUser,
+        	'cpuLoad' => $this->cpuLoad,
         ]);
     }
 
@@ -37,7 +40,27 @@ class Index extends Component
         $this->queryListUser = new Query('/ip/hotspot/user/getall');
         $this->queryActiveuser = new Query('/ip/hotspot/active/getall');
         $this->queryCpuload = new Query('/system/resource/getall');
+        $this->device = $this->device;
         $this->connectMikrotik();
+        $this->listUser = $this->client->query($this->queryListUser)->read();
+        $this->activeUser = $this->client->query($this->queryActiveuser)->read();
+        $this->cpuLoad = $this->client->query($this->queryCpuload)->read();
+        // $this->connectMikrotik();
+    }
+
+    private function resetInputFields(){
+        $this->username = '';
+        $this->password = '';
+    }
+
+    public function openModal()
+    {
+        $this->isOpen = true;
+    }
+
+    public function closeModal()
+    {
+        $this->isOpen = false;
     }
 
     public function connectMikrotik(){
@@ -48,6 +71,42 @@ class Index extends Component
 		    'port' => $this->device->device_port_api,
 		]);
 		$this->client = new Client($this->config);
+    }
+
+    public function create(){
+    	$this->openModal();
+    }
+
+    public function store(){
+        $this->validate([
+            'username'   => 'required',
+            'password'     => 'required'
+        ]);
+
+        $radcheck = Radcheck::create([
+            'username' => $this->username,
+            'attribute' => 'Cleartext-password',
+            'op' => ':=',
+            'value' => $this->password
+        ]);
+
+        $radcheck = Radcheck::create([
+            'username' => $this->username,
+            'attribute' => 'NAS-IP-Address',
+            'op' => '==',
+            'value' => $this->device->device_nas_ip
+        ]);
+
+        $radreply = Radreply::create([
+            'username' => $this->username,
+            'attribute' => 'Mikrotik-Group',
+            'op' => ':=',
+            'value' => 'tamu'
+        ]);
+
+        session()->flash('message', 'Data Berhasil Disimpan.');
+        $this->resetInputFields();
+        $this->closeModal();
     }
 
 

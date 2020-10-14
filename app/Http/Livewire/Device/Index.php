@@ -15,7 +15,7 @@ class Index extends Component
 
 	public $updateMode = false;
 	public $deviceId;
-    public $device_name, $device_ip, $device_port_api, $device_username, $device_password, $region_id;
+    public $device_name, $device_ip, $device_port_api, $device_username, $device_password, $device_nas_ip,$region_id;
     public $isOpen = 0;
     public $isUserOpen = 0;
     public $usermikrotik = [];
@@ -52,6 +52,7 @@ class Index extends Component
             'device_port_api' => 'required',
             'device_username' => 'required',
             'device_password' => 'required',
+            'device_nas_ip' => 'required',
             'region_id' => 'required'
         ]);
         // var_dump($this->region_name); die();
@@ -61,6 +62,7 @@ class Index extends Component
             'device_port_api' => $this->device_port_api,
             'device_username' => $this->device_username,
             'device_password' => $this->device_password,
+            'device_nas_ip' => $this->device_nas_ip,
             'region_id' => $this->region_id
         ]);
 
@@ -125,6 +127,7 @@ class Index extends Component
             'device_port_api' => 'required',
             'device_username' => 'required',
             'device_password' => 'required',
+            'device_nas_ip' => 'required',
             'region_id' => 'required'
         ]);
         // var_dump($this->regionId); die();
@@ -139,6 +142,7 @@ class Index extends Component
 		            'device_port_api' => $this->device_port_api,
 		            'device_username' => $this->device_username,
 		            'device_password' => $this->device_password,
+                    'device_nas_ip' => $this->device_nas_ip,
 		            'region_id' => $this->region_id
                 ]);
 

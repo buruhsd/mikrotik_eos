@@ -5,17 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Device extends Model
+class Radcheck extends Model
 {
     use HasFactory;
 
+    protected $connection = 'radius';
+    protected $table = 'readcheck';
+
     protected $fillable = [
-    	'device_name',
-    	'device_ip',
-    	'device_port_api',
-    	'device_username',
-    	'device_password',
-    	'device_nas_ip',
-    	'region_id'
+    	'username',
+    	'attribute',
+    	'op',
+    	'value'
     ];
 }
