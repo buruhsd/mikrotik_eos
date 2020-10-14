@@ -39,7 +39,7 @@
 			<div class="flex justify-between">
 
 				<div class="flex flex-col"><span class="text-xs">total</span>
-					<span class="text-2xl">{{count($listUser)}}</span>
+					<span class="text-2xl">{{$countUser}}</span>
 				</div>
 			</div>
 		</div>
