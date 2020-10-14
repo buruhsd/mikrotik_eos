@@ -228,7 +228,7 @@
 	                  </div>
 	                  <div class="ml-4">
 	                    <div class="text-sm leading-5 font-medium text-gray-900">
-	                      {{$user['name']}}
+	                      {{$user->username}}
 	                    </div>
 	                    
 	                  </div>
@@ -262,6 +262,7 @@
 	      </div>
 	      <!-- paging-->
 	      <div class="mt-2">
+	      	{{$listUser->links()}}
 	      </div>
 	      
 	    </div>

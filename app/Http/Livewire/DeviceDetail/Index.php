@@ -42,7 +42,7 @@ class Index extends Component
         $this->queryCpuload = new Query('/system/resource/getall');
         $this->device = $this->device;
         $this->connectMikrotik();
-        $this->listUser = $this->client->query($this->queryListUser)->read();
+        $this->listUser = Radreply::latest()->paginate(5);
         $this->activeUser = $this->client->query($this->queryActiveuser)->read();
         $this->cpuLoad = $this->client->query($this->queryCpuload)->read();
         // $this->connectMikrotik();
