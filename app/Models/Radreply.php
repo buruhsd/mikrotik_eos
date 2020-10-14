@@ -19,5 +19,5 @@ class Radreply extends Model
     	'value'
     ];
 
-    public $timestamps = false
+    public $timestamps = false;
 }
