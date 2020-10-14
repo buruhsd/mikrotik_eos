@@ -15,7 +15,7 @@ class Index extends Component
 {
 	use WithPagination;
 
-	public $device, $listUser, $activeUser, $cpuLoad ,$deviceId, $username, $password;
+	public $device, $activeUser, $cpuLoad ,$deviceId, $username, $password;
     public $isOpen = 0;
 	private $config, $client, $queryListUser, $queryActiveuser, $queryCpuload;
 
