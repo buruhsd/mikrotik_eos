@@ -18,4 +18,6 @@ class Radreply extends Model
     	'op',
     	'value'
     ];
+
+    public $timestamps = false
 }

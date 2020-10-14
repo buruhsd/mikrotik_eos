@@ -18,4 +18,6 @@ class Radcheck extends Model
     	'op',
     	'value'
     ];
+
+    public $timestamps = false
 }
