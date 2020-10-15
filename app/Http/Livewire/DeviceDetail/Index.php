@@ -46,7 +46,7 @@ class Index extends Component
         // $this->listUser = Radreply::orderBy('id', 'DESC')->paginate(5);
         $this->activeUser = $this->client->query($this->queryActiveuser)->read();
         $this->cpuLoad = $this->client->query($this->queryCpuload)->read();
-        dd($this->client->query($this->queryActiveuser)->read());
+        // dd($this->client->query($this->queryActiveuser)->read());
         // $this->connectMikrotik();
     }
 
