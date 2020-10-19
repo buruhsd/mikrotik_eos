@@ -384,22 +384,20 @@
 	          	</tr>
 	            <tr>
 	              <th class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-	                Server
+	                mac address
 	              </th>
 	              
-	              <th class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-	                User
-	              </th>
 	              <th class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
 	                Address
 	              </th>
+	              <th class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+	                to Address
+	              </th>
 	              
 	              <th class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-	                Mac Address
+	                Server
 	              </th>
-	              <th class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-	                Uptime
-	              </th>
+	             
 	              
 	              <th class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
 	                Action
@@ -408,7 +406,7 @@
 	            </tr>
 	          </thead>
 	          <tbody class="bg-white divide-y divide-gray-200">
-	          	@foreach($activeHotspot as $hotspot)
+	          	@foreach($hosts as $host)
 	            <tr onclick="window.location='dashboard/device/detail/{{$device->id}}';" style="cursor: pointer;">
 	              <td class="px-6 py-4 whitespace-no-wrap">
 	                <div class="flex items-center">
@@ -417,7 +415,7 @@
 	                  </div>
 	                  <div class="ml-4">
 	                    <div class="text-sm leading-5 font-medium text-gray-900">
-	                      {{$hotspot['server']}}
+	                      {{$host['mac-address']}}
 	                    </div>
 	                    
 	                  </div>
@@ -426,29 +424,21 @@
 	              
 	              <td class="px-6 py-4 whitespace-no-wrap">
 	                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-	                  {{$hotspot['server']}}
+	                  {{$host['address']}}
 	                </span>
 	              </td>
 	              <td class="px-6 py-4 whitespace-no-wrap">
 	                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-	                  {{$hotspot['user']}}
+	                  {{$host['to-address']}}
 	                </span>
 	              </td>
 	              <td class="px-6 py-4 whitespace-no-wrap">
 	                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-	                  {{$hotspot['address']}}
+	                  {{$host['server']}}
 	                </span>
 	              </td>
-	              <td class="px-6 py-4 whitespace-no-wrap">
-	                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-	                  {{$hotspot['mac-address']}}
-	                </span>
-	              </td>
-	              <td class="px-6 py-4 whitespace-no-wrap">
-	                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-	                  {{$hotspot['uptime']}}
-	                </span>
-	              </td>
+	              
+	              
 	              
 	              <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 font-medium">
 	              	<button type="button" class="btn btn-primary" data-toggle="modal" wire:click="lihatUser({{ $device->id }})" data-target="#exampleModalCenter">

@@ -15,9 +15,9 @@ class Index extends Component
 {
 	use WithPagination;
 
-	public $device, $activeUser, $cpuLoad, $activeHotspot ,$deviceId, $username, $password;
+	public $device, $activeUser, $cpuLoad, $activeHotspot, $hosts ,$deviceId, $username, $password;
     public $isOpen = 0;
-	private $config, $client, $queryListUser, $queryActiveuser, $queryCpuload, $queryActiveHotspot;
+	private $config, $client, $queryListUser, $queryActiveuser, $queryCpuload, $queryActiveHotspot, $queryHosts;
 
 
 
@@ -30,7 +30,8 @@ class Index extends Component
             'countUser' => Radreply::count(),
         	'activeUser' => $this->activeUser,
         	'cpuLoad' => $this->cpuLoad,
-            'activeHotspot' => $this->activeHotspot
+            'activeHotspot' => $this->activeHotspot,
+            'hosts' => $this->hosts
         ]);
     }
 
@@ -43,6 +44,8 @@ class Index extends Component
         $this->queryActiveuser = new Query('/ip/hotspot/active/getall');
         $this->queryCpuload = new Query('/system/resource/getall');
         $this->queryActiveHotspot = new Query('/ip/hotspot/active/print');
+        $this->queryHosts = new Query('/ip/hotspot/host/print');
+        
         
         $this->device = $this->device;
         $this->connectMikrotik();
@@ -50,6 +53,7 @@ class Index extends Component
         $this->activeUser = $this->client->query($this->queryActiveuser)->read();
         $this->cpuLoad = $this->client->query($this->queryCpuload)->read();
         $this->activeHotspot = $this->client->query($this->queryActiveHotspot)->read();
+        $this->hosts = $this->client->query($this->queryHosts)->read();
         // dd($this->client->query($this->queryActiveuser)->read());
         // $this->connectMikrotik();
     }
