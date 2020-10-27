@@ -16,7 +16,7 @@ class Index extends Component
 
 	public $updateMode = false;
 	public $deviceId;
-    public $device_name, $device_ip, $device_port_api, $device_username, $device_password, $device_nas_ip,$region_id;
+    public $device_name, $device_ip, $device_port_api, $device_nas_ip, $device_username, $device_password,$region_id;
     public $isOpen = 0;
     public $isEditOpen = 0;
     public $isUserOpen = 0;
@@ -35,6 +35,7 @@ class Index extends Component
         $this->device_name = '';
         $this->device_ip = '';
         $this->device_port_api = '';
+        $this->device_nas_ip = '';
         $this->device_username = '';
         $this->device_password = '';
         $this->region_id = '';
@@ -123,10 +124,12 @@ class Index extends Component
     {
         $this->updateMode = true;
         $device = Device::find($deviceId);
+        // var_dump($device->device_nas_ip); die();
         $this->deviceId = $deviceId;
         $this->device_name = $device->device_name;
         $this->device_ip = $device->device_ip;
         $this->device_port_api = $device->device_port_api;
+        $this->device_nas_ip = $device->device_nas_ip;
         $this->device_username = $device->device_username;
         $this->device_password = $device->device_password;
         $this->region_id = $device->region_id;
@@ -146,11 +149,11 @@ class Index extends Component
             'device_nas_ip' => 'required',
             'region_id' => 'required'
         ]);
-        // var_dump($this->regionId); die();
+        // var_dump($this->device_nas_ip); die();
         if($this->deviceId) {
 
             $device = Device::find($this->deviceId);
-            // var_dump($region); die();
+            // var_dump($device); die();
             if($device) {
                 $device->update([
                     'device_name'   => $this->device_name,
@@ -163,6 +166,7 @@ class Index extends Component
                 ]);
 
                 $device->save();
+                // var_dump($device->save()); die();
             }
         }
 
