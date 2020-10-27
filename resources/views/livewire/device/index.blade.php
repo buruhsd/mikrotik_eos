@@ -2,6 +2,10 @@
 	@if($isOpen)
         @include('livewire.device.create')
     @endif
+    @if($isEditOpen)
+        @include('livewire.device.update')
+    @endif
+    
 
     @if($isUserOpen)
         @include('livewire.device.datauser')
@@ -37,8 +41,8 @@
 	          </thead>
 	          <tbody class="bg-white divide-y divide-gray-200">
 	          	@foreach($devices as $device)
-	            <tr onclick="window.location='dashboard/device/detail/{{$device->id}}';" style="cursor: pointer;">
-	              <td class="px-6 py-4 whitespace-no-wrap">
+	            <tr >
+	              <td onclick="window.location='dashboard/device/detail/{{$device->id}}';" style="cursor: pointer;" class="px-6 py-4 whitespace-no-wrap">
 	                <div class="flex items-center">
 	                  <div class="flex-shrink-0 h-10 w-10">
 	                    <img class="h-10 w-10 rounded-full" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=4&amp;w=256&amp;h=256&amp;q=60" alt="">
@@ -52,7 +56,7 @@
 	                </div>
 	              </td>
 	              
-	              <td class="px-6 py-4 whitespace-no-wrap">
+	              <td onclick="window.location='dashboard/device/detail/{{$device->id}}';" style="cursor: pointer;" class="px-6 py-4 whitespace-no-wrap">
 	                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
 	                  Active
 	                </span>

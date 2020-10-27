@@ -8,6 +8,7 @@ use Livewire\WithPagination;
 use \RouterOS\Config;
 use \RouterOS\Client;
 use \RouterOS\Query;
+use App\Models\Region;
 
 class Index extends Component
 {
@@ -17,6 +18,7 @@ class Index extends Component
 	public $deviceId;
     public $device_name, $device_ip, $device_port_api, $device_username, $device_password, $device_nas_ip,$region_id;
     public $isOpen = 0;
+    public $isEditOpen = 0;
     public $isUserOpen = 0;
     public $usermikrotik = [];
  	public $idUser;
@@ -84,6 +86,14 @@ class Index extends Component
         $this->isOpen = false;
     }
 
+    public function openEditModal(){
+        $this->isEditOpen = true;
+    }
+
+    public function closeEditModal(){
+        $this->isEditOpen = false;
+    }
+
     public function openUserModal()
     {
     	$this->isUserOpen = true;
@@ -112,10 +122,16 @@ class Index extends Component
 	public function edit($deviceId)
     {
         $this->updateMode = true;
-        $region = Region::where('id',$regionId)->first();
-        $this->region_name = $region->region_name;
+        $device = Device::find($deviceId);
+        $this->deviceId = $deviceId;
+        $this->device_name = $device->device_name;
+        $this->device_ip = $device->device_ip;
+        $this->device_port_api = $device->device_port_api;
+        $this->device_username = $device->device_username;
+        $this->device_password = $device->device_password;
+        $this->region_id = $device->region_id;
 
-        $this->openModal();
+        $this->openEditModal();
         
     }
 
@@ -154,7 +170,7 @@ class Index extends Component
         session()->flash('message', 'Data Berhasil Diupdate.');
         $this->resetInputFields();
         //redirect
-        $this->closeModal();
+        $this->closeEditModal();
     }
 
     public function lihatUser($deviceId)
