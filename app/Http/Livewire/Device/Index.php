@@ -149,7 +149,7 @@ class Index extends Component
         // var_dump($this->regionId); die();
         if($this->deviceId) {
 
-            $device = Region::find($this->deviceId);
+            $device = Device::find($this->deviceId);
             // var_dump($region); die();
             if($device) {
                 $device->update([
