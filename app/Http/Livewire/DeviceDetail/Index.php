@@ -16,7 +16,7 @@ class Index extends Component
 	use WithPagination;
 
 	public $device, $activeUser, $cpuLoad, $activeHotspot, $hosts ,$deviceId, $username, $password;
-    public $isOpen = 0;
+    public $isOpen = 'false';
 	private $config, $client, $queryListUser, $queryActiveuser, $queryCpuload, $queryActiveHotspot, $queryHosts;
 
 
@@ -65,12 +65,12 @@ class Index extends Component
 
     public function openModal()
     {
-        $this->isOpen = true;
+        $this->isOpen = 'true';
     }
 
     public function closeModal()
     {
-        $this->isOpen = false;
+        $this->isOpen = 'false';
     }
 
     public function connectMikrotik(){

@@ -20,3 +20,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::post('add_region', [RegionController::class, 'store']);
+
+Route::any('/method', function (Request $request) {
+    $method = $request->method();
+
+    return $method;
+});

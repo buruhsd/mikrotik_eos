@@ -1,5 +1,5 @@
 <div>
-	@if($isOpen)
+	@if($isOpen == "true")
         @include('livewire.device-detail.create')
     @endif
     @if (session()->has('message'))
@@ -466,6 +466,8 @@
 	    </div>
 	  </div>
 	</div>
+
+	<livewire:profile.index :device="$device" :key="$device->id"/>
 
 </div>
 
