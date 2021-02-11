@@ -1,5 +1,5 @@
 <div>
-	@if($isOpen == "true")
+    @if($isOpen == "true")
         @include('livewire.profile.create')
     @endif
     @if (session()->has('message'))
@@ -76,15 +76,10 @@
               
               
               <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 font-medium">
-              	<button type="button" class="btn btn-primary" data-toggle="modal" wire:click="lihatUser({{ $device->id }})" data-target="#exampleModalCenter">
-				Lihat
-				</button>
-                <button type="button" class="btn btn-primary" data-toggle="modal" wire:click="edit({{ $device->id }})" data-target="#exampleModalCenter">
-				Edit
-				</button>
-				<button type="button" class="btn btn-primary" data-toggle="modal" wire:click="destroy({{ $device->id }})" data-target="#exampleModalCenter">
-				Delete
-				</button>
+        				
+        				<button type="button" class="btn btn-primary" data-toggle="modal"  data-target="#exampleModalCenter">
+        				Delete
+        				</button>
 
               </td>
             </tr>

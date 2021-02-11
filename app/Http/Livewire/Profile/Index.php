@@ -12,7 +12,8 @@ use \RouterOS\Query;
 class Index extends Component
 {
 	public $device, $profileList, $name, $max_upload, $max_download, $shared_users;
-	public $isOpen = 'false';
+	public $isOpen = "false";
+	public $isEditOpen = 0;
 	private $listProfileQuery;
 
     public function render()
@@ -20,6 +21,13 @@ class Index extends Component
     	// var_dump($this->device->device_ip); die();
     	$this->getProfile();
         return view('livewire.profile.index');
+    }
+
+    private function resetInputFields(){
+        $this->name = '';
+        $this->max_download = '';
+        $this->max_upload = '';
+        $this->shared_users = '';
     }
 
     public function mount($device)
@@ -73,5 +81,15 @@ class Index extends Component
 
 		$this->closeModal();
 
+		$this->resetInputFields();
+
     }
+
+    public function delete(){
+
+    }
+
+    
+
+
 }
