@@ -15,7 +15,7 @@ class Index extends Component
 {
 	use WithPagination;
 
-	public $device, $activeUser, $cpuLoad, $activeHotspot, $hosts ,$deviceId, $username, $password;
+	public $device, $activeUser, $cpuLoad, $activeHotspot, $hosts ,$deviceId, $username, $password, $mikrotik_group;
     public $isOpen = 'false';
 	private $config, $client, $queryListUser, $queryActiveuser, $queryCpuload, $queryActiveHotspot, $queryHosts;
 
@@ -26,7 +26,7 @@ class Index extends Component
 
         return view('livewire.device-detail.index', [
         	'device' => $this->device,
-        	'listUser' => Radreply::orderBy('id', 'DESC')->paginate(5),
+        	'listUser' => Radcheck::orderBy('id', 'DESC')->where('attribute', 'NAS-IP-Address')->where('value', $this->device->device_nas_ip)->paginate(5),
             'countUser' => Radreply::count(),
         	'activeUser' => $this->activeUser,
         	'cpuLoad' => $this->cpuLoad,
@@ -111,7 +111,7 @@ class Index extends Component
             'username' => $this->username,
             'attribute' => 'Mikrotik-Group',
             'op' => ':=',
-            'value' => 'tamu'
+            'value' => $this->mikrotik_group
         ]);
 
         session()->flash('message', 'Data Berhasil Disimpan.');
