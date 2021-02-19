@@ -23,7 +23,7 @@ class Index extends Component
 
     public function render()
     {
-
+        // dd($this->activeHotspot);
         return view('livewire.device-detail.index', [
         	'device' => $this->device,
         	'listUser' => Radcheck::orderBy('id', 'DESC')->where('attribute', 'NAS-IP-Address')->where('value', $this->device->device_nas_ip)->paginate(5),
@@ -41,7 +41,7 @@ class Index extends Component
         $this->device = Device::findOrFail($this->deviceId);
 
         $this->queryListUser = new Query('/ip/hotspot/user/getall');
-        $this->queryActiveuser = new Query('/ip/hotspot/active/getall');
+        // $this->queryActiveuser = new Query('/ip/hotspot/active/getall');
         $this->queryCpuload = new Query('/system/resource/getall');
         $this->queryActiveHotspot = new Query('/ip/hotspot/active/print');
         $this->queryHosts = new Query('/ip/hotspot/host/print');
@@ -50,7 +50,7 @@ class Index extends Component
         $this->device = $this->device;
         $this->connectMikrotik();
         // $this->listUser = Radreply::orderBy('id', 'DESC')->paginate(5);
-        $this->activeUser = $this->client->query($this->queryActiveuser)->read();
+        // $this->activeUser = $this->client->query($this->queryActiveuser)->read();
         $this->cpuLoad = $this->client->query($this->queryCpuload)->read();
         $this->activeHotspot = $this->client->query($this->queryActiveHotspot)->read();
         $this->hosts = $this->client->query($this->queryHosts)->read();
@@ -117,6 +117,12 @@ class Index extends Component
         session()->flash('message', 'Data Berhasil Disimpan.');
         $this->resetInputFields();
         $this->closeModal();
+    }
+
+    public function delete($userId){
+        $radcheck1 = Radcheck::find($userId);
+        $radcheck->delete();
+
     }
 
 
