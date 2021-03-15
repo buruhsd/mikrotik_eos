@@ -13,9 +13,11 @@ class RealtaTable extends Migration
      */
     public function up()
     {
-        $table->id();
-        $table->text('data');
-        $table->timestamps();
+        Schema::create('realtas', function (Blueprint $table) {
+            $table->id();
+            $table->text('data');
+            $table->timestamps();
+        });
     }
 
     /**
