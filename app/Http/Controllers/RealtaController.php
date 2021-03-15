@@ -21,6 +21,8 @@ class RealtaController extends Controller
 
     public function getData(Request $request){
 
+    	var_dump($request); die();
+
     	$data = new Realta;
     	$data->fill([
     		'data' => $request
