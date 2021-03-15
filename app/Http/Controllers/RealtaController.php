@@ -19,7 +19,7 @@ class RealtaController extends Controller
     }
 
 
-    public function getData(Request $request;){
+    public function getData(Request $request){
 
     	$data = new Realta;
     	$data->fill([
