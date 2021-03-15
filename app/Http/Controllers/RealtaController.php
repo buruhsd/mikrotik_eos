@@ -21,11 +21,31 @@ class RealtaController extends Controller
 
     public function getData(Request $request){
 
-    	var_dump($request); die();
-
     	$data = new Realta;
     	$data->fill([
-    		'data' => $request
+    		'key' => $request->key,
+	        'mode'  => $request->mode,
+	        'room' => $request->room,
+	        'rsvno' => $request->rsvno,
+	        'fnm' => $request->fnm,
+	        'lnm' => $request->lnm,
+	        'ci' => $request->ci,
+	        'co' => $request->co,
+	        'citm' => $request->citm,
+	        'cotm' => $request->cotm,
+	        'coid' => $request->coid,
+	        'gsph' => $request->gsph,
+	        'rate' => $request->rate,
+	        'vip' => $request->vip,
+	        'lnm1' => $request->lnm1,
+	        'fnm1' => $request->fnm1,
+	        'profid1' => $request->profid1,
+	        'lnm2' => $request->lnm2,
+	        'fnm2' => $request->fnm2,
+	        'profid2' => $request->profid2,
+	        'lnm3' => $request->lnm3,
+	        'fnm3' => $request->fnm3,
+	        'profid3' => $request->profid3,
     	]);
 
     	$data->save();

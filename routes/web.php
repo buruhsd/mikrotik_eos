@@ -28,8 +28,7 @@ Route::get('/removeuser', [CobaController::class, 'removeUser']);
 Route::get('/edituser', [CobaController::class, 'edit']);
 
 
-Route::post('notif/realta', [RealtaController::class, 'post'])->name('post.api');
-Route::get('notif/realta/', [RealtaController::class, 'getData'])->name('getData.api');
+
 
 
 // Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {

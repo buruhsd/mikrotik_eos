@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegionController;
+use App\Http\Controllers\RealtaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,3 +27,7 @@ Route::any('/method', function (Request $request) {
 
     return $method;
 });
+
+
+Route::post('notif/realta', [RealtaController::class, 'post'])->name('post.api');
+Route::get('notif/realta/', [RealtaController::class, 'getData'])->name('getData.api');
