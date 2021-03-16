@@ -29,7 +29,7 @@ Route::get('/edituser', [CobaController::class, 'edit']);
 
 
 
-
+Route::get('te/', [RealtaController::class, 'test'])->name('getData.test');
 
 // Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 //     return view('dashboard');

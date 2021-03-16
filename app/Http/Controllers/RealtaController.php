@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Realta;
 use Ixudra\Curl\Facades\Curl;
+use App\Models\Radcheck;
+use App\Models\Radreply;
+use App\Models\Device;
+use Carbon\Carbon;
 
 class RealtaController extends Controller
 {
@@ -16,6 +20,22 @@ class RealtaController extends Controller
         ->withData( array( 'foz' => 'baz' ) )
         ->get();
     	
+    }
+
+    public function test(){
+    	$date = 20210315;
+
+    	$var1 = substr($date, 0, 4);
+    	$var2 = substr($date, 4, 2);
+    	$var3 = substr($date, 6, 2);
+
+
+
+    	$dt = Carbon::create($var1, $var2, $var3, 14, 0, 0);
+
+    	echo $dt->format('j F Y H:i:s');
+
+    	// phpinfo();
     }
 
 
@@ -49,6 +69,45 @@ class RealtaController extends Controller
     	]);
 
     	$data->save();
+
+
+    	$radcheck = Radcheck::create([
+            'username' => $request->room,
+            'attribute' => 'Cleartext-password',
+            'op' => ':=',
+            'value' => $request->fnm
+        ]);
+
+        $radcheck = Radcheck::create([
+            'username' => $request->room,
+            'attribute' => 'NAS-IP-Address',
+            'op' => '==',
+            'value' => '103.105.69.94'
+        ]);
+
+        $date = $request->co;
+
+    	$var1 = substr($date, 0, 4);
+    	$var2 = substr($date, 4, 2);
+    	$var3 = substr($date, 6, 2);
+
+
+
+    	$dt = Carbon::create($var1, $var2, $var3, 14, 0, 0);
+
+        $radcheck = Radcheck::create([
+            'username' => $request->room,
+            'attribute' => 'Expiration',
+            'op' => ':=',
+            'value' => $dt->format('j F Y H:i:s')
+        ]);
+
+        $radreply = Radreply::create([
+            'username' => $request->room,
+            'attribute' => 'Mikrotik-Group',
+            'op' => ':=',
+            'value' => 'awann.inhouse'
+        ]);
 
     	return response()->json(['data' => 'success']);
 
