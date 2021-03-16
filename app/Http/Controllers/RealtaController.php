@@ -70,16 +70,17 @@ class RealtaController extends Controller
 
     	$data->save();
 
-
+        $room = strtolower($request->room);
+        $fnm = strtolower($request->fnm);
     	$radcheck = Radcheck::create([
-            'username' => $request->room,
+            'username' => trim($room),
             'attribute' => 'Cleartext-password',
             'op' => ':=',
-            'value' => $request->fnm
+            'value' => trim($fnm)
         ]);
 
         $radcheck = Radcheck::create([
-            'username' => $request->room,
+            'username' => trim($room),
             'attribute' => 'NAS-IP-Address',
             'op' => '==',
             'value' => '103.105.69.94'
@@ -96,14 +97,14 @@ class RealtaController extends Controller
     	$dt = Carbon::create($var1, $var2, $var3, 14, 0, 0);
 
         $radcheck = Radcheck::create([
-            'username' => $request->room,
+            'username' => trim($room),
             'attribute' => 'Expiration',
             'op' => ':=',
             'value' => $dt->format('j F Y H:i:s')
         ]);
 
         $radreply = Radreply::create([
-            'username' => $request->room,
+            'username' => trim($room),
             'attribute' => 'Mikrotik-Group',
             'op' => ':=',
             'value' => 'awann.inhouse'
