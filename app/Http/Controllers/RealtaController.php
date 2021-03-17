@@ -70,46 +70,50 @@ class RealtaController extends Controller
 
     	$data->save();
 
-        $room = strtolower($request->room);
-        $fnm = strtolower($request->fnm);
-    	$radcheck = Radcheck::create([
-            'username' => trim($room),
-            'attribute' => 'Cleartext-password',
-            'op' => ':=',
-            'value' => trim($fnm)
-        ]);
+        if ($request->mode == 'checkin') {
+            # code...
+        
 
-        $radcheck = Radcheck::create([
-            'username' => trim($room),
-            'attribute' => 'NAS-IP-Address',
-            'op' => '==',
-            'value' => '103.105.69.94'
-        ]);
+            $room = strtolower($request->room);
+            $fnm = strtolower($request->fnm);
+        	$radcheck = Radcheck::create([
+                'username' => trim($room),
+                'attribute' => 'Cleartext-password',
+                'op' => ':=',
+                'value' => trim($fnm)
+            ]);
 
-        $date = $request->co;
+            $radcheck = Radcheck::create([
+                'username' => trim($room),
+                'attribute' => 'NAS-IP-Address',
+                'op' => '==',
+                'value' => '103.105.69.94'
+            ]);
 
-    	$var1 = substr($date, 0, 4);
-    	$var2 = substr($date, 4, 2);
-    	$var3 = substr($date, 6, 2);
+            $date = $request->co;
+
+        	$var1 = substr($date, 0, 4);
+        	$var2 = substr($date, 4, 2);
+        	$var3 = substr($date, 6, 2);
 
 
 
-    	$dt = Carbon::create($var1, $var2, $var3, 14, 0, 0);
+        	$dt = Carbon::create($var1, $var2, $var3, 14, 0, 0);
 
-        $radcheck = Radcheck::create([
-            'username' => trim($room),
-            'attribute' => 'Expiration',
-            'op' => ':=',
-            'value' => $dt->format('j F Y H:i:s')
-        ]);
+            $radcheck = Radcheck::create([
+                'username' => trim($room),
+                'attribute' => 'Expiration',
+                'op' => ':=',
+                'value' => $dt->format('j F Y H:i:s')
+            ]);
 
-        $radreply = Radreply::create([
-            'username' => trim($room),
-            'attribute' => 'Mikrotik-Group',
-            'op' => ':=',
-            'value' => 'awann.inhouse'
-        ]);
-
+            $radreply = Radreply::create([
+                'username' => trim($room),
+                'attribute' => 'Mikrotik-Group',
+                'op' => ':=',
+                'value' => 'awann.inhouse'
+            ]);
+        }
     	return response()->json(['data' => 'success']);
 
     }
