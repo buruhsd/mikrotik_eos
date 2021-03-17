@@ -26,7 +26,7 @@ class Index extends Component
         // dd($this->activeHotspot);
         return view('livewire.device-detail.index', [
         	'device' => $this->device,
-        	'listUser' => Radcheck::orderBy('id', 'DESC')->where('attribute', 'NAS-IP-Address')->where('value', $this->device->device_nas_ip)->paginate(5),
+        	'listUser' => Radcheck::orderBy('id', 'DESC')->where('attribute', 'NAS-IP-Address')->where('value', $this->device->device_nas_ip)->paginate(10),
             'countUser' => Radreply::count(),
         	'activeUser' => $this->activeUser,
         	'cpuLoad' => $this->cpuLoad,
