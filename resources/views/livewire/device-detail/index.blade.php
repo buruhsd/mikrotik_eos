@@ -166,7 +166,8 @@
 
 	              <td class="px-6 py-4 whitespace-no-wrap">
 	                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-	                  {{App\Models\Radreply::where('username',$user->username)->where('attribute', 'Cleartext-password')->first()->value}}
+	                  {{App\Models\Radcheck::where('username',$user->username)->where('attribute', 'Cleartext-password')->first()->value}}
+
 	                </span>
 	              </td>
 
