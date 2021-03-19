@@ -119,9 +119,9 @@ class RealtaController extends Controller
             $room = strtolower($request->room);
             $room = trim($room);
 
-            $radcheck1 = Radcheck::where('username',$user->username)->where('attribute', 'Cleartext-password')->first()->delete();
-            $radcheck2 = Radcheck::where('username',$user->username)->where('attribute', 'NAS-IP-Address')->first()->delete();
-            $radcheck3 = Radcheck::where('username',$user->username)->where('attribute', 'Expiration')->first()->delete();
+            $radcheck1 = Radcheck::where('username',$room)->where('attribute', 'Cleartext-password')->first()->delete();
+            $radcheck2 = Radcheck::where('username',$room)->where('attribute', 'NAS-IP-Address')->first()->delete();
+            $radcheck3 = Radcheck::where('username',$room)->where('attribute', 'Expiration')->first()->delete();
 
             $radreply = Radreply::where('username',$user->username)->first()->delete();
             
