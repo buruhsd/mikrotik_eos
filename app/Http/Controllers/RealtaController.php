@@ -132,6 +132,33 @@ class RealtaController extends Controller
             
 
         }
+        if ($request->mode == 'update') {
+            $room = strtolower($request->room);
+            $room = trim($room);
+            $data = Radcheck::where('username',$room)->where('attribute', 'Cleartext-password')->first();
+            if ($data == null) {
+                return response()->json(['data' => 'success']);
+            }else{
+
+                $date = $request->co;
+
+                $var1 = substr($date, 0, 4);
+                $var2 = substr($date, 4, 2);
+                $var3 = substr($date, 6, 2);
+
+
+
+                $dt = Carbon::create($var1, $var2, $var3, 14, 0, 0);
+                
+                $radcheck3 = Radcheck::where('username',$room)->where('attribute', 'Expiration')->first();
+                $radcheck3->value = $dt->format('j F Y H:i:s');
+            }
+            
+
+            $radreply = Radreply::where('username',$room)->first()->delete();
+            
+
+        }
     	return response()->json(['data' => 'success']);
 
     }
