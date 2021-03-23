@@ -152,6 +152,7 @@ class RealtaController extends Controller
                 
                 $radcheck3 = Radcheck::where('username',$room)->where('attribute', 'Expiration')->first();
                 $radcheck3->value = $dt->format('j F Y H:i:s');
+                $radcheck3->save();
             }
             
 
