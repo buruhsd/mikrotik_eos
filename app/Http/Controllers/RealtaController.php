@@ -155,8 +155,6 @@ class RealtaController extends Controller
                 $radcheck3->save();
             }
             
-
-            $radreply = Radreply::where('username',$room)->first()->delete();
             
 
         }
